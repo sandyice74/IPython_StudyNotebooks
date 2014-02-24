@@ -1,0 +1,311 @@
+{
+ "metadata": {
+  "name": ""
+ },
+ "nbformat": 3,
+ "nbformat_minor": 0,
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# Downloading data files (location 626)\n",
+      "import urllib2, zipfile\n"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 100
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# set url variable to main website\n",
+      "url = \"http://ipython.rossant.net/\""
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 101
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# set zip file to variable\n",
+      "filename = \"facebook.zip\""
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 102
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# dl file into memory, next dl to hard disk\n",
+      "downloaded = urllib2.urlopen(url + filename)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 103
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# mk folder directory called \"data\", and cd into it\n",
+      "# note that $ allows use of python variables in system or magic command\n",
+      "\n",
+      "folder = 'data'"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 104
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "mkdir $folder"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 105
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "cd $folder"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "/home/betty/Programming/IPYTHON/iPython_for_DataVis_Book/data/data/data/data/data/facebook/data/facebook/data/facebook/data/facebook/data\n"
+       ]
+      }
+     ],
+     "prompt_number": 106
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# download/write open file from memory to hard disk.\n",
+      "# note, wb is \"write binary\" file (vs \"w\" for write text file)\n",
+      "# this is a necessary distinction for windows, not for linux/mac/unix\n",
+      "with open(filename, \"wb\") as f:\n",
+      "        f.write(downloaded.read()) "
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 107
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# Using extractall method of zip module and a ZipFile object, extract zip into \n",
+      "\n",
+      "with zipfile.ZipFile(filename) as zip:\n",
+      "    zip.extractall('.')"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 108
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "#bookmark this data directory. enter next time from any directory by \"cd fbdata\".\n",
+      "\n",
+      "%bookmark fbdata"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 109
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "cd fbdata\n"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "(bookmark:fbdata) -> /home/betty/Programming/IPYTHON/iPython_for_DataVis_Book/data/data/data/data/data/facebook/data/facebook/data/facebook/data/facebook/data\n",
+        "/home/betty/Programming/IPYTHON/iPython_for_DataVis_Book/data/data/data/data/data/facebook/data/facebook/data/facebook/data/facebook/data\n"
+       ]
+      }
+     ],
+     "prompt_number": 110
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "cd facebook/"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "/home/betty/Programming/IPYTHON/iPython_for_DataVis_Book/data/data/data/data/data/facebook/data/facebook/data/facebook/data/facebook/data/facebook\n"
+       ]
+      }
+     ],
+     "prompt_number": 111
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "with open(\"0.edges\", \"r\") as f:\n",
+      "    print(f.readline())"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "236 186\n",
+        "\n"
+       ]
+      }
+     ],
+     "prompt_number": 112
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# access the system shell with ! \n",
+      "# and save as list of strings to python variable \n",
+      "\n",
+      "files = !ls -l -S | grep edges\n",
+      "files"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "metadata": {},
+       "output_type": "pyout",
+       "prompt_number": 113,
+       "text": [
+        "['-rw-rw-r-- 1 betty betty 600274 Feb 23 00:58 1912.edges',\n",
+        " '-rw-rw-r-- 1 betty betty 523802 Feb 23 00:58 107.edges',\n",
+        " '-rw-rw-r-- 1 betty betty 280354 Feb 23 00:58 1684.edges',\n",
+        " '-rw-rw-r-- 1 betty betty  96188 Feb 23 00:58 3437.edges',\n",
+        " '-rw-rw-r-- 1 betty betty  51066 Feb 23 00:58 348.edges',\n",
+        " '-rw-rw-r-- 1 betty betty  37228 Feb 23 00:58 0.edges',\n",
+        " '-rw-rw-r-- 1 betty betty  27082 Feb 23 00:58 414.edges',\n",
+        " '-rw-rw-r-- 1 betty betty  26496 Feb 23 00:58 686.edges',\n",
+        " '-rw-rw-r-- 1 betty betty   4320 Feb 23 00:58 698.edges',\n",
+        " '-rw-rw-r-- 1 betty betty   2914 Feb 23 00:58 3980.edges']"
+       ]
+      }
+     ],
+     "prompt_number": 113
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# To use python variables in the system command, \n",
+      "# use $ for single variables, and {} for python expressions\n",
+      "\n",
+      "!head -n5 {files[0]}\n",
+      "\n",
+      "# displays the first 5 lines of first file in files list."
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "head: invalid option -- 'r'\r\n",
+        "Try `head --help' for more information.\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 114
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# Create an alias using % for repetitively typed or long commands\n",
+      "# Makes sure to store or they will NOT be saved for use in next ipython session\n",
+      "\n",
+      "%alias largest ls -lsSH | grep %s\n",
+      "%store largest\n",
+      "\n",
+      "# %s is the string placeholder for the argument that will passed later"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "Alias stored: largest (ls -lsSH | grep %s)\n"
+       ]
+      }
+     ],
+     "prompt_number": 115
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "# In future sessions, type %store -r to recover aliases and variables\n",
+      "%store -r"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 116
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    }
+   ],
+   "metadata": {}
+  }
+ ]
+}

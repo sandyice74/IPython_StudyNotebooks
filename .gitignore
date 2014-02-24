@@ -1,0 +1,19 @@
+# notebook checkpoints
+.ipynb_checkpoints
+
+# Packages #
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+
+# Credentials
+data.json
+
+# test envs
+env
